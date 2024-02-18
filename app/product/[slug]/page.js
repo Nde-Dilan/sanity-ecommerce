@@ -1,9 +1,7 @@
-"use client";
+ "use client"
 
 import React from "react";
-import { useRouter } from "next/navigation";
-import { client, urlFor } from "@/lib/client";
-import { getProductAndSimilar } from "@/app/utils";
+import { getProductsAndProductBySlug } from "@/app/utils";
 
 import {
   AiOutlineMinus,
@@ -11,57 +9,88 @@ import {
   AiFillStar,
   AiOutlineStar,
 } from "react-icons/ai";
+import { ProductCard } from "@/components";
+import SameItem from "@/components/sameItem";
 
-export const revalidate = 2;
+//Creating a state for our product color section
 
-const ProductDetails = async ({ params }) => {
-  const {
-    props: { product, similarProducts },
-  } = await getProductAndSimilar(params?.slug);
-  // console.log(product[0]);
-  console.log(similarProducts);
-  const { image, price, description, name } = similarProducts[0];
-  return (
-    <section>
-      <div className="product-detail-container">
-        <div>
-          <div className="image-container">
-            <img
-              width={250}
-              height={250}
-              src={urlFor(image && image[0]).url()}
-              alt=""
-            />
-          </div>
-          <div className="small-images-container">
-            {/* {image?.map((item, index) => (
-              <img
-                width={250}
-                height={250}
-                key={index}
-                src={urlFor(item).url()}
-                alt=""
-                className=""
-                onMouseOver=""
-              />
-            ))} */}
-          </div>
-        </div>
-        <div className="product-details-desc">
-          <h1 className="products-heading">{name}</h1>
-          <div className="reviews">
+export const revalidate = 20;
+//FIXME: Turn this into client side component and instead of using async/awit , use the promise method .then
+
+const ProductDetails =  ({ params }) => {
+  let slug = params.slug;
+
+  console.log(slug);
+
+  // const { products, singleProduct } = await getProductsAndProductBySlug(slug);
+
+  getProductsAndProductBySlug(slug)
+    .then(({singleProduct,products}) => {
+      const { name, image, price, description } = singleProduct;
+
+      return (
+        <section>
+          <div className="product-detail-container">
             <div>
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiOutlineStar />
+              <SameItem image={image} />
+            </div>
+            <div className="product-detail-desc">
+              <h1>{name}</h1>
+
+              <div className="reviews">
+                <AiFillStar />
+                <AiFillStar />
+                <AiFillStar />
+                <AiFillStar />
+                <AiOutlineStar />
+                <p>(20)</p>
+              </div>
+              <div>
+                <h4>Details: </h4>
+                <p>{description}</p>
+                <p className="price">FCFA {price}</p>
+                <div className="quantity">
+                  <h3>Quantity</h3>
+                  <p className="quantity-desc">
+                    <span className="minus" onClick="">
+                      <AiOutlineMinus />
+                    </span>
+                    <span className="num" onClick="">
+                      0
+                    </span>
+                    <span className="plus" onClick="">
+                      <AiOutlinePlus />
+                    </span>
+                  </p>
+                </div>
+                <div className="buttons">
+                  <button type="button" className="add-to-cart">
+                    Add to Cart
+                  </button>
+                  <button type="button" className="buy-now">
+                    Buy Now
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
+          <div className="maylike-products-wrapper">
+            <h2>You May Also Like</h2>
+            <div className="marquee">
+              <div className="maylike-products-container track">
+                {products.map((item) => (
+                  <ProductCard key={item._id} {...item} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    })
+    .catch((e) => {
+      console.log(e);
+      return <>Nothing found please just go back!</>;
+    });
 };
 
 export default ProductDetails;
