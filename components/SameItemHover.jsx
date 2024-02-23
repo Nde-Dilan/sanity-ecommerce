@@ -3,12 +3,12 @@
 import React, { useState } from "react";
 import { client, urlFor } from "@/lib/client";
 
-const SameItem = ({ image }) => {
+const SameItemHover = ({ image }) => {
   //Creating the index to keep track of what the user is hovering on
 
   const [index, setIndex] = useState(0);
   return (
-    <>
+    <div>
       <div className="image-container">
         <img
           width={250}
@@ -25,15 +25,18 @@ const SameItem = ({ image }) => {
             height={250}
             key={i}
             // INFO:
-            /**I think the pb is that i am rendering this client side component inside a sever side coomponent so when it rendersthe first time all the dom events are not longer available since it's now a sever side component.
+            /**I think the pb is that i am rendering this client side component inside a sever side coomponent so when it rendersthe first time all the dom events are no longer available since it's now a sever side component.
 
 How can i go around that?
 
 i want to use my client code because am rendering something using some Hook that can't run on server side code, and at the same time i also want to maintain my server side code because am using async/await there */
             // onMouseEnter={() => {alert("hi")}}
 
-            //TODO: Solve this problem before continuing
-            onMouseOver={() => setIndex(i)}
+            //DONE: Solve this problem before continuing
+            onMouseOver={() => {
+              setIndex(i);
+              console.log("Setting The index");
+            }}
             src={urlFor(item).url()}
             alt="Another item"
             className={
@@ -42,8 +45,8 @@ i want to use my client code because am rendering something using some Hook that
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
-export default SameItem;
+export default SameItemHover;

@@ -14,6 +14,7 @@ export const getProducts = cache(async () => {
 })
 
 
+
 export const getProductsAndProductBySlug = cache(async (slug) => {
   //Getting the current prop of the slug of a product
   const query = `*[_type == "product"] {
