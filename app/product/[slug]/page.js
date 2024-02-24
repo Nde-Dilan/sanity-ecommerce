@@ -3,15 +3,11 @@
 import React from "react";
 import { getProductsAndProductBySlug } from "@/app/utils";
 
-import {
-  AiFillStar,
-  AiOutlineStar,
-} from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { ProductCard } from "@/components";
 import SameItemHover from "@/components/SameItemHover";
 
 //Using our state
-
 
 import PlusOrMinus from "@/components/PlusOrMinus";
 import ActionButtons from "@/components/ActionButtons";
@@ -29,8 +25,6 @@ const ProductDetails = async ({ params }) => {
   const { singleProduct, products } = await getProductsAndProductBySlug(slug);
 
   const { name, image, price, description } = singleProduct;
-
-  
 
   return (
     <section>
@@ -50,11 +44,10 @@ const ProductDetails = async ({ params }) => {
           <div>
             <h4>Details: </h4>
             <p>{description}</p>
-            <p className="price">FCFA {price}</p>
-            
+            <p className="price">XAF {price}</p>
 
-            <PlusOrMinus/>
-           <ActionButtons product={singleProduct}/>
+            <PlusOrMinus />
+            <ActionButtons product={singleProduct} />
           </div>
         </div>
       </div>

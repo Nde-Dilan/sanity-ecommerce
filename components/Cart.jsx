@@ -31,6 +31,7 @@ const Cart = () => {
     totalPrice,
     cartItems,
     setShowCart,
+    onRemove,
   } = useStateContext();
 
   return (
@@ -73,7 +74,7 @@ const Cart = () => {
                 <div className="item-desc">
                   <div className="flex top">
                     <h5>{item?.name}</h5>
-                    <h4>{item?.price} FCFA</h4>
+                    <h4>{item?.price} XAF</h4>
                   </div>
                   <div className="flex bottom">
                     <div className="">
@@ -86,9 +87,7 @@ const Cart = () => {
                         >
                           <AiOutlineMinus />
                         </span>
-                        <span className="num" >
-                          {item?.quantity}
-                        </span>
+                        <span className="num">{item?.quantity}</span>
                         <span
                           className="plus"
                           onClick={() =>
@@ -102,7 +101,7 @@ const Cart = () => {
                     <button
                       type="button"
                       className="remove-item"
-                      onClick={() => {}}
+                      onClick={() => onRemove(item)}
                     >
                       <TiDeleteOutline />
                     </button>
@@ -116,7 +115,7 @@ const Cart = () => {
           <div className="cart-bottom">
             <div className="total">
               <h3>Subtotal: </h3>
-              <h3>{totalPrice} FCFA</h3>
+              <h3>{totalPrice} XAF</h3>
             </div>
             <div className="btn-container">
               <button type="button" className="btn" onClick={() => {}}>

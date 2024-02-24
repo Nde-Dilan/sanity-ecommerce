@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { AiOutlineShopping } from "react-icons/ai";
+import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { useStateContext } from "@/context/StateContext";
 
 import { Cart } from ".";
@@ -14,6 +15,11 @@ const NavBar = () => {
       <p className="logo">
         <Link href="/">End Headphones</Link>
       </p>
+      <button 
+      className="toggle-btn"
+      type="button">
+        <BsToggleOn/>
+      </button>
       <button
         className="cart-icon"
         type="button"
@@ -24,9 +30,8 @@ const NavBar = () => {
         <span className="cart-item-qty">{totalQuantities}</span>
         <AiOutlineShopping />
       </button>
-      {showCart && 
-      <Cart />
-      }
+      
+      {showCart && <Cart />}
     </div>
   );
 };

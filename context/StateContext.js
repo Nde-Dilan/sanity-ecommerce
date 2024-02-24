@@ -79,6 +79,24 @@ export const StateContext = ({ children }) => {
     }
   };
 
+  const onRemove = (product) => {
+    foundProduct = cartItems.find((item) => item._id === product._id);
+    productIndex = cartItems.findIndex((item) => product._id === item._id);
+
+    let newCartItems = [...cartItems];
+    newCartItems.splice(productIndex,1);
+
+    setCartItems(newCartItems)
+
+    setTotalPrice(
+      (prevTotalPrice) =>
+        prevTotalPrice - foundProduct.price * foundProduct.quantity
+    );
+    setTotalQuantities(
+      (prevTotalQuantity) => prevTotalQuantity - foundProduct.quantity
+    );
+  };
+
   const changeCartState = (sign) => {
     let newCartItems = [...cartItems];
     newCartItems[productIndex].quantity = eval(
@@ -118,6 +136,7 @@ export const StateContext = ({ children }) => {
         decreaseQty,
         onAdd,
         toggleCartItemQuantity,
+        onRemove
       }}
     >
       {children}
