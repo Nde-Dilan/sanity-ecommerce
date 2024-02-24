@@ -4,7 +4,6 @@ import { getProducts } from '@/app/utils'
  
 export const revalidate = 2;
 
-import {client} from '@/lib/client'
 const Index = async () => {
  
   const data = await getProducts();

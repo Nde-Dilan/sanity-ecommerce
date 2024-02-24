@@ -11,6 +11,7 @@ const SameItemHover = ({ image }) => {
     <div>
       <div className="image-container">
         <img
+          className="product-detail-image"
           width={250}
           height={250}
           src={urlFor(image && image[index]).url()}

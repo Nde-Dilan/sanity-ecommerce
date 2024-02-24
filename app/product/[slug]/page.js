@@ -4,13 +4,17 @@ import React from "react";
 import { getProductsAndProductBySlug } from "@/app/utils";
 
 import {
-  AiOutlineMinus,
-  AiOutlinePlus,
   AiFillStar,
   AiOutlineStar,
 } from "react-icons/ai";
 import { ProductCard } from "@/components";
 import SameItemHover from "@/components/SameItemHover";
+
+//Using our state
+
+
+import PlusOrMinus from "@/components/PlusOrMinus";
+import ActionButtons from "@/components/ActionButtons";
 
 //Creating a state for our product color section
 
@@ -25,6 +29,8 @@ const ProductDetails = async ({ params }) => {
   const { singleProduct, products } = await getProductsAndProductBySlug(slug);
 
   const { name, image, price, description } = singleProduct;
+
+  
 
   return (
     <section>
@@ -45,28 +51,10 @@ const ProductDetails = async ({ params }) => {
             <h4>Details: </h4>
             <p>{description}</p>
             <p className="price">FCFA {price}</p>
-            <div className="quantity">
-              <h3>Quantity</h3>
-              <p className="quantity-desc">
-                <span className="minus" onClick="">
-                  <AiOutlineMinus />
-                </span>
-                <span className="num" onClick="">
-                  0
-                </span>
-                <span className="plus" onClick="">
-                  <AiOutlinePlus />
-                </span>
-              </p>
-            </div>
-            <div className="buttons">
-              <button type="button" className="add-to-cart">
-                Add to Cart
-              </button>
-              <button type="button" className="buy-now">
-                Buy Now
-              </button>
-            </div>
+            
+
+            <PlusOrMinus/>
+           <ActionButtons product={singleProduct}/>
           </div>
         </div>
       </div>

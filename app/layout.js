@@ -2,6 +2,10 @@
 import "./globals.css";
 import { Footer, NavBar } from "@/components";
 
+//Importing our context to share it across the whole app
+import { StateContext } from "@/context/StateContext";
+
+import { Toaster } from "react-hot-toast";
 // const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -12,12 +16,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <NavBar />
-        <main className={`main-container`}>{children}</main>
-      <Footer />
-      </body>
+      <body className="dark dark:bg-black bg-black">
+        <StateContext>
+          <Toaster />
 
+          <NavBar />
+          <main className={`main-container`}>{children}</main>
+          <Footer />
+        </StateContext>
+      </body>
     </html>
   );
 }
