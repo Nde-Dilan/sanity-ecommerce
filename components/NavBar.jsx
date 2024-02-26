@@ -3,10 +3,10 @@
 import React from "react";
 import Link from "next/link";
 import { AiOutlineShopping } from "react-icons/ai";
-import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { useStateContext } from "@/context/StateContext";
 
-import { Cart } from ".";
+import { Cart } from "./index";
+import { ModeToggle } from "./ToggleMode";
 const NavBar = () => {
   //using our created hook to get our two func
   const { totalQuantities, showCart, setShowCart } = useStateContext();
@@ -15,11 +15,7 @@ const NavBar = () => {
       <p className="logo">
         <Link href="/">End Headphones</Link>
       </p>
-      <button 
-      className="toggle-btn"
-      type="button">
-        <BsToggleOn/>
-      </button>
+     <ModeToggle/>
       <button
         className="cart-icon"
         type="button"

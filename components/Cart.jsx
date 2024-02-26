@@ -16,9 +16,8 @@ import { TiDeleteOutline } from "react-icons/ti";
 import { toast } from "react-hot-toast";
 import { useStateContext } from "@/context/StateContext";
 
-//To use images store inside sanity
+//To use images stored inside sanity
 import { urlFor } from "@/lib/client";
-import PlusOrMinus from "./PlusOrMinus";
 
 const Cart = () => {
   //Setting up our reference
@@ -42,15 +41,15 @@ const Cart = () => {
           className="cart-heading"
           onClick={() => setShowCart(false)}
         >
-          <AiOutlineLeft />
-          <span className="heading">Your Cart</span>
+          <AiOutlineLeft  />
+          <span className="heading dark:text-blue-950">Your Cart</span>
           <span className="cart-num-items">({totalQuantities} items)</span>
         </button>
 
         {cartItems.length < 1 && (
           <div className="empty-cart">
             <AiOutlineShopping size={150} />
-            <h3>Your shopping cart is empty for the moment.</h3>
+            <h3 className="dark:text-blue-950">Your shopping cart is empty for the moment.</h3>
             <Link href={"/"}>
               <button
                 className="btn"
@@ -114,8 +113,8 @@ const Cart = () => {
         {cartItems.length >= 1 && (
           <div className="cart-bottom">
             <div className="total">
-              <h3>Subtotal: </h3>
-              <h3>{totalPrice} XAF</h3>
+              <h3 className="dark:text-blue-950">Subtotal: </h3>
+              <h3 className="dark:text-blue-950">{totalPrice} XAF</h3>
             </div>
             <div className="btn-container">
               <button type="button" className="btn" onClick={() => {}}>

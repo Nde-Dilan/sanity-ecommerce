@@ -4,7 +4,7 @@ import React from "react";
 import { getProductsAndProductBySlug } from "@/app/utils";
 
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { ProductCard } from "@/components";
+import { ProductCard } from "@/components/index";
 import SameItemHover from "@/components/SameItemHover";
 
 //Using our state
