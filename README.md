@@ -1,4 +1,7 @@
 # E-Commerce App
+
+![Home Page](./captures/checkout_page.png)
+
 This is a modern ecommerce application built with Next.js, React, and Sanity.io. It features a fully functional shopping cart, product pages, and more.
 ![Home Page](./captures/home_page.png)
 ![Home Page Dark Mode](./captures/home_black.png)
