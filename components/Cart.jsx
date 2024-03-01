@@ -35,21 +35,23 @@ const Cart = () => {
 
   return (
     <section className="cart-wrapper" ref={cartRef}>
-      <div className="cart-container">
+      <div className="cart-container dark:bg-black">
         <button
           type="button"
           className="cart-heading"
           onClick={() => setShowCart(false)}
         >
-          <AiOutlineLeft  />
-          <span className="heading dark:text-blue-950">Your Cart</span>
+          <AiOutlineLeft />
+          <span className="heading dark:text-white">Your Cart</span>
           <span className="cart-num-items">({totalQuantities} items)</span>
         </button>
 
         {cartItems.length < 1 && (
           <div className="empty-cart">
             <AiOutlineShopping size={150} />
-            <h3 className="dark:text-blue-950">Your shopping cart is empty for the moment.</h3>
+            <h3 className="dark:text-blue-950">
+              Your shopping cart is empty for the moment.
+            </h3>
             <Link href={"/"}>
               <button
                 className="btn"
@@ -112,13 +114,18 @@ const Cart = () => {
         {/* Sub total */}
         {cartItems.length >= 1 && (
           <div className="cart-bottom">
-            <div className="total">
-              <h3 className="dark:text-blue-950">Subtotal: </h3>
-              <h3 className="dark:text-blue-950">{totalPrice} XAF</h3>
+            <div className="total ml-6">
+              <h3 className="dark:text-white">Subtotal: </h3>
+              <h3 className="dark:text-white">{totalPrice} XAF</h3>
             </div>
             <div className="btn-container">
               <button type="button" className="btn" onClick={() => {}}>
                 Pay With OM/MOMO
+              </button>
+            </div>
+            <div className="btn-container">
+              <button type="button" className="btn" onClick={() => {}}>
+                Pay With Your Stripe
               </button>
             </div>
           </div>
